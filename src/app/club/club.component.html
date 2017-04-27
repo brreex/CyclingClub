@@ -1,0 +1,81 @@
+<div class="container">
+
+  <div class="row " style="padding-top:40px;">
+    <br /><br />
+    <div class="col-md-8">
+      <h1>{{clubName}}</h1>
+      <div class="input-group">
+        <input type="textarea" class="form-control" placeholder="Announce something" #post />
+        <span class="input-group-btn">
+     <button class="btn btn-primary" type="button" (click)="createPost(post.value)">Post</button>
+         </span>
+      </div>
+      <br /><br />
+      <div>
+        <div>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let post of posts">
+              {{post.post}}posted by{{post.memberName}}</li>
+          </ul>
+        </div>
+        <!--End of post area-->
+      </div>
+    </div>
+  </div>
+  <div class="row " style="padding-top:40px;">
+    <br /><br />
+    <div class="col-md-8">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          CHAT
+        </div>
+        <!--Conversation Area-->
+        <div class="panel-body">
+          <ul *ngFor="let msg of conversation" class="media-list">
+            <li class="media">
+              <div class="media-body">
+                <div class="media">
+                  <a class="pull-left">
+                    <img style="height: 40px; width: 40px;" class="media-object img-circle " src="{{msg.pic}}" />
+                  </a>
+                  <div class="media-body">
+                    {{msg.text}}
+                    <br />
+                    <small class="text-muted">{{msg.userName}} | {{msg.time | date:"MM/dd/yy"}}</small>
+                    <hr />
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="panel-footer">
+
+          <!--Message test box and send buttom-->
+          <div class="input-group">
+            <input type="text" [(ngModel)]="message" (keypress)="keypressHandler($event)" class="form-control" placeholder="Enter Message"
+            />
+            <span class="input-group-btn">
+         <button class="btn btn-info" type="button" (click)="send()">SEND</button>
+         </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="position: fixed; bottom: 0;right: 0;" class="col-md-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          CLUB MEMBERS
+        </div>
+        <div class="panel-body">
+          <ul *ngFor="let member of members" class="media-list">
+            <li class="media">
+              <onlineusers [data]="member">
+              </onlineusers>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

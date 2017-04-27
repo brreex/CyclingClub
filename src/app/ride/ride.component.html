@@ -1,0 +1,30 @@
+
+<h2>Live Start Ride</h2>
+ 
+ <button (click) = "emergency(id)" >Emergency</button>
+ <button (click) = "stopEvent(id)" >Stop</button>
+ <br>
+ <div class="stop" *ngIf = "isStop" >Ride is Stop</div>
+ <sebm-google-map 
+      [latitude]="lat"
+      [longitude]="long"
+      [zoom]="zoom"
+      [disableDefaultUI]="false"
+      [zoomControl]="false"
+     >
+    
+    
+      <sebm-google-map-marker 
+          [latitude]="lat"
+          [longitude]="long"
+          [label]= "userName"
+          >
+          
+        <sebm-google-map-info-window>
+          <strong></strong>
+        </sebm-google-map-info-window>
+        
+      </sebm-google-map-marker>
+      
+      ]
+    </sebm-google-map>

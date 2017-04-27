@@ -1,0 +1,21 @@
+<h3>
+  User Profile
+</h3>
+
+<div class="row">
+  <h5>
+  Name: {{auth.userProfile?.name}}
+</h5>
+<div *ngIf="auth.authenticated()">
+    <div class="col-md-2">
+      <img class="thumbnail" style="width: 100px; height: 100px;" src="{{auth.userProfile.picture}}">
+    </div>
+        <div class="col-md-10">
+      <ul class="list-group">
+      <li class="list-group-item">Email: {{auth.userProfile?.email}}</li>
+      <li class="list-group-item">Location: {{auth.userProfile?.location?.name}}</li>
+      <li class="list-group-item">Gender: {{auth.userProfile?.gender}}</li>
+    </ul>
+    </div>
+</div>
+</div>

@@ -1,0 +1,45 @@
+<router-outlet></router-outlet>
+<div class="container" *ngIf="clubCond">
+
+  <div class= "col-md-6-offset-6">
+
+    <div class="input-group">
+     <input type="textarea" class="form-control" placeholder="search" #search />
+     <span class="input-group-btn">
+     <button class="btn btn-primary" type="button" (click)="searchByName(search.value)">Search</button>
+         </span>
+      </div>
+
+     <div>
+<ul class="list-group">
+  <li  class="list-group-item" *ngFor="let club of serClubs"><a [routerLink]="['club',club._id]" [queryParams]={name:club.name} (click)="toggleClub()">{{club.name}}</a></li>
+</ul>
+   </div>
+  </div>
+
+  <div class="row " style="padding-top:40px;">
+    <button type="button" class="btn btn-primary" (click)="prospectClub()">Join new Clubs</button>
+    <div clas="col-md-6">
+      <h1>Joined clubs</h1>
+      <ul class="list-group">
+        <li *ngFor="let club of joinedClubs"> <a [routerLink]="['club',club._id]" [queryParams]={name:club.name} (click)="toggleClub()">{{club.name}}</a> </li>
+      </ul>
+    </div>
+    <div clas="col-md-6">
+      <div *ngIf="createCond">
+        Club name<input type="text" placeholder="name of club" name="name" #name>
+        <button type="button" class="btn btn-primary" (click)="createClub(name.value)">submit</button>
+        <image-upload [url]="'http://localhost:3200/clubs/images'" [buttonCaption]="'Select Club logo'" [maxFileSize]="1048576" [max]="1"
+          (onFileUploadFinish)="imageUploaded($event)"></image-upload>
+      </div>
+      <div *ngIf="joinCond">
+        <button type="button" class="btn btn-primary" (click)="toggleCreate()">Create Club</button>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let club of newclubs"><img src="{{club.logo}}" width="20px" height="20px">{{club.name}}
+             <button type="button" class="btn btn-primary" (click)="joinClub(club._id,$event)" #join>Join<span class="glyphicon glyphicon-plus"></span></button>
+          </li>
+        </ul>
+      </div> 
+    </div>
+  </div>
+</div>

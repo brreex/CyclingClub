@@ -1,0 +1,35 @@
+<nav>
+  <ul>
+    <li><a [routerLink] = "['create']"> Create Event</a></li>
+  </ul>
+</nav>
+<br>
+<div>Emergency Flag</div>
+<div *ngIf= "isResolve" [ngStyle]="{color : 'green'}" >Emergency is Resolve</div>
+<ul class="Emergency" >
+  <li *ngFor = "let e of emergency">
+    Latitude : {{e.latitude}}
+    Longtitude : {{e.longtitude}} 
+    <button (click) = "resolveEmergency(e._id)" *ngIf ="isMine">Resolve </button>
+  </li>
+</ul>
+
+<br>
+<table>
+  <tr>
+    <th>Event Name</th>
+    <th>Event Date</th>
+    <th>Event Time</th>
+    <th>Action</th>
+  </tr>
+<tr *ngFor = "let e of events" >
+  <td>{{e.eventName}}</td>
+  <td>{{e.eventDate}}</td>
+  <td>{{e.eventTime}}</td>
+
+  <td>
+  <button (click) = "startEvent(e._id)" *ngIf ="CheckStatus(e.status)" >{{buttonString}}</button>
+  
+  </td>
+</tr>
+</table>

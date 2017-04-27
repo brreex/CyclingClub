@@ -1,0 +1,28 @@
+
+<h2>Live Ride</h2>
+ 
+ <sebm-google-map 
+      [latitude]="lat"
+      [longitude]="lng"
+      [zoom]="zoom"
+      [disableDefaultUI]="false"
+      [zoomControl]="false"
+     >
+    
+    
+      <sebm-google-map-marker 
+          *ngFor="let m of markers; let i = index"
+          (markerClick)="clickedMarker(m.status, i)"
+          [latitude]="m.latitude"
+          [longitude]="m.longtitude"
+          [label]="m.eventName"
+          >
+          
+        <sebm-google-map-info-window>
+          <strong>InfoWindow content</strong>
+        </sebm-google-map-info-window>
+        
+      </sebm-google-map-marker>
+      
+      ]
+    </sebm-google-map>
